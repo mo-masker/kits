@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    // 获取随机整数
+    function random(n){
+       
+        return Math.floor(Math.random()*n)
+    }
+
+    console.log(random(20));
+
+
+    // 获取随机整数范围
+    function random1(n,m){
+        return Math.floor(Math.random()* (m - n + 1) + n)
+    }
+
+    console.log(random1(10,15));
+</script>
+</html>
