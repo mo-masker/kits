@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    // 封装获取范围随机数的函数
+    function random(n,m){
+        var r = Math.random()*(m-n+1);
+        r = Math.floor(r);
+        r += n;
+        return r;
+    }
+
+    // 获取随机颜色的rgb值
+    function randomColor(){
+        var r = random(0,255);
+        var g = random(0,255);
+        var b = random(0,255);
+
+        // 拼接成一个rgb的格式
+        var color = 'rgb('+r+','+g+','+b+')';
+        return color;
+    }
+    console.log(randomColor());
+
+    // 把body的背景颜色设置为随机的rgb颜色
+    document.body.style.backgroundColor = randomColor();
+</script>
+</html>
