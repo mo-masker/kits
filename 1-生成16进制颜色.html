@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    function randomHexColor1(){
+        var arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+        var color = ['#'];
+        for (var i = 0; i < 6; i++) {
+            var r = Math.floor(Math.random() * arr.length);
+            color.push(arr[r]);
+        }
+        return color.join('');
+    }
+    console.log(randomHexColor1());
+
+    document.body.style.backgroundColor=randomHexColor1()
+
+
+    //方法2
+    function randomHexColor2(){
+        var color = ['#'];
+        for (var i = 0; i < 6; i++) {
+            var r = Math.floor(Math.random()*16).toString(16);
+            color.push(r);
+        }
+        return color.join('');
+    }
+    console.log(randomHexColor2());
+    document.body.style.backgroundColor=randomHexColor2()
+</script>
+</html>
