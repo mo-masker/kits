@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            border-bottom: 0 none;
+        }
+
+        .row {
+            display: flex;
+            border-bottom: 1px solid #000;
+        }
+
+        .item {
+            width: 100px;
+            height: 40px;
+            border-right: 1px solid #000;
+            /* line-height: 40px;
+          text-align: center; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            height: 357px;
+            flex: 0 0 100%;
+            display: none;
+        }
+
+        .active {
+            background-color: red;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="row">
+            <div class="item active">影音</div>
+            <div class="item">书籍</div>
+            <div class="item">零食</div>
+        </div>
+        <div class="row">
+            <div class="content show">影音的内容</div>
+            <div class="content">书籍的内容</div>
+            <div class="content">零食的内容</div>
+        </div>
+    </div>
+</body>
+<!-- <script src="./tab.js"></script> -->
+<script>
+
+    /*
+      面向对象的封装
+        - 骗自己 - tab就是一个对象
+        - tab栏的特征和行为
+          - 特征
+            -
+          - 行为
+            - 注册事件
+            - 切换分类的样式
+            - 切换内容
+    */
+
+    class Tab {
+        constructor(itemClass,eventType,itemActiveClass,contentClass,contentShowClass) {
+            this.itemClass = itemClass || '.item';
+            this.eventType = eventType || 'mouseover';
+            this.itemActiveClass = itemActiveClass || 'active';
+            this.contentClass = contentClass || '.content';
+            this.contentShowClass = contentShowClass || 'show';
+            // 获取元素
+            this.items = document.querySelectorAll(this.itemClass);
+            this.contents = document.querySelectorAll(this.contentClass);
+
+            this.addEvent();
+        }
+
+        // 封装方法
+        // 注册事件
+        addEvent() {
+            // 用箭头函数改变this 指向
+            this.items.forEach((e, i) => {
+                e.addEventListener(this.eventType, (e) => {
+                    // console.log(i);
+                    // 点击的item
+                    let target = e.target;
+                    // 切换分类
+                    this.changeItems(target);
+                    // 切换内容
+                    this.changeContent(i);
+                })
+            });
+        }
+        // 切换分类
+        changeItems(current) {
+            // console.log(123);
+            // 把当前点击的那一个变红，把其他的变白
+            this.items.forEach(e=> {
+                e.classList.remove(this.itemActiveClass);
+            });
+            // 把点击的那一个变红
+            current.classList.add(this.itemActiveClass);
+            
+        }
+        // 切换内容
+        changeContent(index){
+            // 把所有的内容隐藏
+            this.contents.forEach(e=>{
+                e.classList.remove(this.contentShowClass);
+            });
+            //把对应的内容显示
+            this.contents[index].classList.add(this.contentShowClass);
+        }
+    }
+
+    // 调用类
+    let tab = new Tab();
+
+
+
+</script>
+
+</html>
